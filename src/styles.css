@@ -2,7 +2,7 @@
 body
 {
   /* Background pattern from subtlepatterns.com */
-  background-image: url("src/images/footer_lodyas.png");
+  background-image: url("src/assets/images/footer_lodyas.png");
   font-family: 'Russo One', sans-serif;
   letter-spacing: 1px;
   color: white;
