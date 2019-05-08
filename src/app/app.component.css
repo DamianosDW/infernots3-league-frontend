@@ -1,0 +1,38 @@
+#main_container
+{
+  width: 100%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+#info_container
+{
+  padding-top: 200px;
+}
+
+#user_container
+{
+  width: 25%;
+  text-align: center;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  border: 2px solid white;
+  border-top: 2px solid transparent;
+}
+
+#buttons_container
+{
+  clear: both;
+}
+
+.component_container
+{
+
+}
+

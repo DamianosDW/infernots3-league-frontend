@@ -21,7 +21,7 @@ const appRoutes: Routes = [
     CsgoComponent,
     FooterComponent,
     MatchScheduleComponent,
-    RegisteredPlayersComponent,
+    RegisteredPlayersComponent
   ],
   imports: [
     BrowserModule
