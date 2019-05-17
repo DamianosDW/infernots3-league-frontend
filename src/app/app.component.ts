@@ -15,7 +15,6 @@ export class AppComponent
   showLeagueOfLegends = false;
   showCSGO = false;
   username = '';
-  team = '-';
 
   showInfoContainerPage()
   {
@@ -35,10 +34,14 @@ export class AppComponent
 
   }
 
+  showProfilePage()
+  {
+
+  }
+
   logOut()
   {
     this.username = '';
-    this.team = '-';
     this.showInfoContainer = true;
     this.showLeagueOfLegends = false;
     this.showCSGO = false;
