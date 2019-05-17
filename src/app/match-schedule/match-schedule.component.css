@@ -1,0 +1,43 @@
+table
+{
+  border: 1px solid white;
+  text-align: center;
+  display: inline-block;
+  width: fit-content;
+}
+
+tr
+{
+  border: 0;
+}
+
+table td:nth-child(1)
+{
+  border: 1px solid white;
+  padding: 10px;
+}
+
+td
+{
+  border: 1px solid white;
+  padding: 10px;
+}
+
+button
+{
+  background-color: orange;
+  width: 150px;
+  height: 35px;
+  margin-left: 5px;
+  margin-right: 5px;
+  /*border: 2px solid white;*/
+  border: 0;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover
+{
+  background-color: darkorange;
+}
