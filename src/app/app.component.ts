@@ -14,6 +14,7 @@ export class AppComponent
   showInfoContainer = true;
   showLeagueOfLegends = false;
   showCSGO = false;
+  showRegistrationForm = false;
   username = '';
 
   showInfoContainerPage()
@@ -31,7 +32,8 @@ export class AppComponent
 
   showRegisterForm()
   {
-
+    this.showInfoContainer = false;
+    this.showRegistrationForm = true;
   }
 
   showProfilePage()
