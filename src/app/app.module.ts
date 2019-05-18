@@ -8,6 +8,8 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule, Routes } from "@angular/router";
 import { MatchScheduleComponent } from './match-schedule/match-schedule.component';
 import { RegisteredPlayersComponent } from './registered-players/registered-players.component';
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { FormsModule } from "@angular/forms";
 
 const appRoutes: Routes = [
   { path: 'leagueoflegends', component: LolComponent },
@@ -21,10 +23,12 @@ const appRoutes: Routes = [
     CsgoComponent,
     FooterComponent,
     MatchScheduleComponent,
-    RegisteredPlayersComponent
+    RegisteredPlayersComponent,
+    RegistrationFormComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
