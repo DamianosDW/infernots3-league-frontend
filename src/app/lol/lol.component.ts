@@ -16,6 +16,7 @@ export class LolComponent
   joinGames()
   {
     console.log('Joined ;)');
+    alert("Dołączyłeś/aś do rozgrywek!\nTwój następny mecz odbędzie się --.--.---- o godzinie --:--.\nNick gracza, z którym się zmieszysz to: nick_gracza.");
   }
 
   showNewsPage()
