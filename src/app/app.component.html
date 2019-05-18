@@ -10,7 +10,9 @@
     <p>Wybierz interesującą Ciebie grę i dołącz do rozgrywek ;)</p>
     <div id="buttons_container" *ngIf="username.length == 0">
       <button class="game_button" (click)="showRegisterForm()">Zarejestruj się!</button>
-      <button class="game_button" (click)="showLoginFormPage()">Zaloguj się!</button>
+      <button class="game_button" (click)="showLoginFormPage()">Zaloguj się!</button><br />
+      <button class="game_button" (click)="showMatchSchedulePage()">Harmonogram rozgrywek!</button>
+      <button class="game_button" (click)="showLiveStreamPage()">Transmisja LIVE!</button>
     </div>
     <div id="games_container" *ngIf="username.length > 0">
       <button class="game_button" (click)="showLeagueOfLegendsPage()"><img src="{{leagueOfLegendsLogo}}" alt="League Of Legends" style="width: 375px; height: 125px;"/></button>
@@ -22,6 +24,11 @@
     <app-csgo *ngIf="showCSGO"></app-csgo>
     <app-registration-form *ngIf="showRegistrationForm"></app-registration-form>
     <app-login-form *ngIf="showLoginForm"></app-login-form>
+    <div *ngIf="showMatchSchedule" style="margin-top: 100px;">
+      <button class="submit_button" style="margin: 15px;" (click)="showInfoContainerPage()">Strona główna</button>
+      <app-match-schedule></app-match-schedule>
+    </div>
+
   </div>
   <app-footer></app-footer>
 </div>

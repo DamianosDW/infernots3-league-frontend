@@ -17,6 +17,8 @@ export class AppComponent
   showRegistrationForm = false;
   showLoginForm = false;
   username = '';
+  showMatchSchedule = false;
+  showLiveStream = false;
 
   showInfoContainerPage()
   {
@@ -25,6 +27,8 @@ export class AppComponent
     this.showCSGO = false;
     this.showRegistrationForm = false;
     this.showLoginForm = false;
+    this.showMatchSchedule = false;
+    this.showLiveStream = false;
   }
 
   //TODO MOVE THIS TO NEW COMPONENT
@@ -54,6 +58,17 @@ export class AppComponent
   }
   //TODO MOVE THIS TO NEW COMPONENT
 
+  showMatchSchedulePage()
+  {
+    this.showInfoContainer = false;
+    this.showMatchSchedule = true;
+  }
+
+  showLiveStreamPage()
+  {
+    this.showInfoContainer = false;
+    this.showLiveStream = true;
+  }
 
   showLeagueOfLegendsPage()
   {
