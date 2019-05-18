@@ -22,6 +22,7 @@ export class AppComponent
     this.showInfoContainer = true;
     this.showLeagueOfLegends = false;
     this.showCSGO = false;
+    this.showRegistrationForm = false;
   }
 
   //TODO MOVE THIS TO NEW COMPONENT
