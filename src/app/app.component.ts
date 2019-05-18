@@ -15,6 +15,7 @@ export class AppComponent
   showLeagueOfLegends = false;
   showCSGO = false;
   showRegistrationForm = false;
+  showLoginForm = false;
   username = '';
 
   showInfoContainerPage()
@@ -23,12 +24,14 @@ export class AppComponent
     this.showLeagueOfLegends = false;
     this.showCSGO = false;
     this.showRegistrationForm = false;
+    this.showLoginForm = false;
   }
 
   //TODO MOVE THIS TO NEW COMPONENT
-  showLoginForm()
+  showLoginFormPage()
   {
-    this.username = 'DamianosDW';
+    this.showInfoContainer = false;
+    this.showLoginForm = true;
   }
 
   showRegisterForm()
