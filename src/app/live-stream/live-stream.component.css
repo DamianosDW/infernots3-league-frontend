@@ -1,0 +1,78 @@
+#video_player
+{
+  float: left;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 80%;
+  height: 100%;
+  margin-bottom: 45px;
+}
+
+#chat_and_stats
+{
+  width: 20%;
+  height: 100%;
+  float: right;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 45px;
+}
+
+#first_player
+{
+  float: left;
+  width: 49%;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  text-align: center;
+}
+
+#second_player
+{
+  float: right;
+  width: 49%;
+  border-left: 1px solid white;
+  border-bottom: 1px solid white;
+  text-align: center;
+}
+
+#first_player table, #second_player table
+{
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  border: 1px solid orange;
+  letter-spacing: 1px;
+}
+
+
+
+iframe
+{
+  min-height: 400px;
+}
+
+td
+{
+  padding: 5px;
+}
+
+@media only screen and (max-width: 1366px)
+{
+  iframe, #first_player, #second_player
+  {
+    height: 535px;
+  }
+}
+
+@media only screen and (max-width: 1920px)
+{
+  iframe, #first_player, #second_player
+  {
+    height: 835px;
+  }
+}
+

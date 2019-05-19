@@ -11,6 +11,7 @@ import { RegisteredPlayersComponent } from './registered-players/registered-play
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { FormsModule } from "@angular/forms";
 import { LoginFormComponent } from './login-form/login-form.component';
+import { LiveStreamComponent } from './live-stream/live-stream.component';
 
 const appRoutes: Routes = [
   { path: 'leagueoflegends', component: LolComponent },
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
     MatchScheduleComponent,
     RegisteredPlayersComponent,
     RegistrationFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    LiveStreamComponent
   ],
   imports: [
     BrowserModule,
