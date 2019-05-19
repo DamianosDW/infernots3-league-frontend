@@ -9,26 +9,20 @@ import { AppComponent } from "../app.component";
 export class LolComponent
 {
   showMatchSchedule = true;
-  showNews = false;
+  showLiveStream = false;
 
   constructor(private appComponent: AppComponent) { }
 
-  joinGames()
+  joinGames() //TODO USE API TO GET PROPER DATA
   {
     console.log('Joined ;)');
     alert("Dołączyłeś/aś do rozgrywek!\nTwój następny mecz odbędzie się --.--.---- o godzinie --:--.\nNick gracza, z którym się zmieszysz to: nick_gracza.");
   }
 
-  showNewsPage()
-  {
-    this.showNews = true;
-    this.showMatchSchedule = false;
-  }
-
   showMatchSchedulePage()
   {
     this.showMatchSchedule = true;
-    this.showNews = false;
+    this.showLiveStream = false;
   }
 
 
