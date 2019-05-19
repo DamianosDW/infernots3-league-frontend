@@ -10,6 +10,13 @@ body
   padding: 0;
 }
 
+label
+{
+  display: inline-block;
+  padding-bottom: 5px;
+  letter-spacing: 1px;
+}
+
 #menu
 {
   width: 100%;
