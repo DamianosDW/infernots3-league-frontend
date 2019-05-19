@@ -4,6 +4,7 @@
       <button class="user_info_button" (click)="showProfilePage()">Profil</button>
       <button class="user_info_button" (click)="logOut()">Wyloguj się</button></p>
   </div>
+
   <div *ngIf="showInfoContainer" id="info_container">
     <h1>{{title}}</h1>
     <p>Witaj na oficjalnej stronie amatorskiej ligi e-sportowej!</p>
@@ -19,6 +20,7 @@
       <button class="game_button" (click)="showCSGOPage()"><img src="{{csgoLogo}}" alt="Counter Strike: Global Offensive" style="width: 375px; height: 125px;"/></button>
     </div>
   </div>
+
   <div class="component_container">
     <app-lol *ngIf="showLeagueOfLegends"></app-lol>
     <app-csgo *ngIf="showCSGO"></app-csgo>
@@ -28,8 +30,9 @@
       <button class="submit_button" style="margin: 15px;" (click)="showInfoContainerPage()">Strona główna</button>
       <app-match-schedule></app-match-schedule>
     </div>
-
+    <app-live-stream *ngIf="showLiveStream"></app-live-stream>
   </div>
+
   <app-footer></app-footer>
 </div>
 
