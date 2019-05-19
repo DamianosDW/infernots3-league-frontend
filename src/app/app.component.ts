@@ -16,6 +16,7 @@ export class AppComponent
   showCSGO = false;
   showRegistrationForm = false;
   showLoginForm = false;
+  showProfile = false;
   username = '';
   showMatchSchedule = false;
   showLiveStream = false;
@@ -27,6 +28,7 @@ export class AppComponent
     this.showCSGO = false;
     this.showRegistrationForm = false;
     this.showLoginForm = false;
+    this.showProfile = false;
     this.showMatchSchedule = false;
     this.showLiveStream = false;
   }
@@ -46,7 +48,12 @@ export class AppComponent
 
   showProfilePage()
   {
-
+    this.showProfile = true;
+    this.showInfoContainer = false;
+    this.showLeagueOfLegends = false;
+    this.showCSGO = false;
+    this.showMatchSchedule = false;
+    this.showLiveStream = false;
   }
 
   logOut()
@@ -55,6 +62,7 @@ export class AppComponent
     this.showInfoContainer = true;
     this.showLeagueOfLegends = false;
     this.showCSGO = false;
+    this.showProfile = false;
     this.showMatchSchedule = false;
     this.showLiveStream = false;
   }
@@ -70,6 +78,8 @@ export class AppComponent
   {
     this.showInfoContainer = false;
     this.showLiveStream = true;
+    this.showLeagueOfLegends = false;
+    this.showCSGO = false;
   }
 
   showLeagueOfLegendsPage()

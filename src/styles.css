@@ -39,7 +39,6 @@ label
   margin-right: auto;
   left: 0;
   right: 0;
-  /*border: 2px solid white;*/
 }
 
 #right_side
@@ -48,7 +47,6 @@ label
   float: right;
   text-align: center;
   margin-top: 25px;
-  /*border: 2px solid white;*/
 }
 
 .game_button

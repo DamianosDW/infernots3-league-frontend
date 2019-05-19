@@ -26,6 +26,10 @@
     <app-csgo *ngIf="showCSGO"></app-csgo>
     <app-registration-form *ngIf="showRegistrationForm"></app-registration-form>
     <app-login-form *ngIf="showLoginForm"></app-login-form>
+    <div *ngIf="showProfile" style="margin-top: 100px;">
+      <button class="submit_button" style="margin: 15px;" (click)="showInfoContainerPage()">Strona główna</button>
+      <app-profile></app-profile>
+    </div>
     <div *ngIf="showMatchSchedule" style="margin-top: 100px;">
       <button class="submit_button" style="margin: 15px;" (click)="showInfoContainerPage()">Strona główna</button>
       <app-match-schedule></app-match-schedule>
