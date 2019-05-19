@@ -8,12 +8,16 @@ import { Component } from '@angular/core';
 export class MatchScheduleComponent
 {
   matches: Array<Match>;
+
   constructor()
   {
     this.matches = [new Match(new Date(), 'Gracz #1', 'Gracz #3'), new Match(new Date(), 'Gracz #5', 'Gracz #2')];
   }
 
+  showPlayerStats()
+  {
 
+  }
 }
 
 class Match
