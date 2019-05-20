@@ -13,6 +13,8 @@ import { FormsModule } from "@angular/forms";
 import { LoginFormComponent } from './login-form/login-form.component';
 import { LiveStreamComponent } from './live-stream/live-stream.component';
 import { ProfileComponent } from './profile/profile.component';
+import {HttpClientModule} from "@angular/common/http";
+import {HttpService} from "./http.service";
 
 const appRoutes: Routes = [
   { path: 'leagueoflegends', component: LolComponent },
@@ -34,9 +36,10 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
