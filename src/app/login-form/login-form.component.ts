@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {AppComponent} from "../app.component";
+import {HttpService} from "../http.service";
 
 @Component({
   selector: 'app-login-form',
@@ -11,13 +12,29 @@ export class LoginFormComponent
   login = '';
   password = '';
 
-  constructor(private appComponent: AppComponent) { }
+  constructor(private appComponent: AppComponent, private httpService: HttpService) { }
 
-  logIn() //TODO USE API
+  logIn()
   {
-    this.appComponent.username = this.login;
-    this.appComponent.showInfoContainer = true;
-    this.appComponent.showLoginForm = false;
+    // Check if user can log in
+    this.httpService.userCanLogIn(this.login, this.password).subscribe(userLoggedIn => {
+      if(userLoggedIn)
+      {
+        // Get user info
+        this.httpService.getUserInfo(this.login).subscribe(userInfo => {
+          this.appComponent.userInfo = userInfo;
+        });
+
+        // Show main page
+        this.appComponent.showInfoContainer = true;
+        this.appComponent.showLoginForm = false;
+      }
+      else
+      {
+        this.password = '';
+        alert('Niepoprawny login/hasło!');
+      }
+    });
   }
 
   isButtonDisabled()
