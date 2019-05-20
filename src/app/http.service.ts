@@ -21,5 +21,14 @@ export class HttpService {
     return this.httpClient.get('http://localhost:8080/api/users/' + login + '/info');
   }
 
+  createAccount(ts3Nickname: string, login: string, password: string)
+  {
+    return this.httpClient.put('http://localhost:8080/api/users/create', {
+      username: login,
+      password: password,
+      ts3Nickname: ts3Nickname
+    })
+  }
+
 
 }
