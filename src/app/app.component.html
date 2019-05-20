@@ -1,6 +1,6 @@
 <div id="main_container">
-  <div id="user_container" *ngIf="username.length > 0" style="">
-    <p>Zalogowany jako: <b>{{username}}</b><br />
+  <div id="user_container" *ngIf="userInfo.username?.length > 0" style="">
+    <p>Zalogowany jako: <b>{{userInfo.username}}</b><br />
       <button class="user_info_button" (click)="showProfilePage()">Profil</button>
       <button class="user_info_button" (click)="logOut()">Wyloguj się</button></p>
   </div>
@@ -9,13 +9,13 @@
     <h1>{{title}}</h1>
     <p>Witaj na oficjalnej stronie amatorskiej ligi e-sportowej!</p>
     <p>Wybierz interesującą Ciebie grę i dołącz do rozgrywek ;)</p>
-    <div id="buttons_container" *ngIf="username.length == 0">
+    <div id="buttons_container" *ngIf="userInfo.username.length == 0">
       <button class="game_button" (click)="showRegisterForm()">Zarejestruj się!</button>
       <button class="game_button" (click)="showLoginFormPage()">Zaloguj się!</button><br />
       <button class="game_button" (click)="showMatchSchedulePage()">Harmonogram rozgrywek!</button>
       <button class="game_button" (click)="showLiveStreamPage()">Transmisja LIVE!</button>
     </div>
-    <div id="games_container" *ngIf="username.length > 0">
+    <div id="games_container" *ngIf="userInfo.username.length > 0">
       <button class="game_button" (click)="showLeagueOfLegendsPage()"><img src="{{leagueOfLegendsLogo}}" alt="League Of Legends" style="width: 375px; height: 125px;"/></button>
       <button class="game_button" (click)="showCSGOPage()"><img src="{{csgoLogo}}" alt="Counter Strike: Global Offensive" style="width: 375px; height: 125px;"/></button>
     </div>

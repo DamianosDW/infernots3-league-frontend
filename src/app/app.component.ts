@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
@@ -17,9 +18,11 @@ export class AppComponent
   showRegistrationForm = false;
   showLoginForm = false;
   showProfile = false;
-  username = '';
+  userInfo: UserInfo = {username: ''};
   showMatchSchedule = false;
   showLiveStream = false;
+
+  constructor() { }
 
   showInfoContainerPage()
   {
@@ -58,7 +61,7 @@ export class AppComponent
 
   logOut()
   {
-    this.username = '';
+    this.userInfo.username = '';
     this.showInfoContainer = true;
     this.showLeagueOfLegends = false;
     this.showCSGO = false;
@@ -95,4 +98,13 @@ export class AppComponent
     this.showLeagueOfLegends = false;
     this.showInfoContainer = false;
   }
+}
+
+export interface UserInfo
+{
+  userId?: number;
+  username?: string;
+  ts3Nickname?: string;
+  lolNickname?: string;
+  csgoNickname?: string;
 }
