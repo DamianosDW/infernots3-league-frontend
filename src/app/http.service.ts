@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import {UserInfo} from "./app.component";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,12 @@ export class HttpService {
       username: login,
       password: password,
       ts3Nickname: ts3Nickname
-    })
+    });
+  }
+
+  updateUserInfo(userInfo: UserInfo)
+  {
+    return this.httpClient.put('http://localhost:8080/api/users/info/update', userInfo);
   }
 
 
