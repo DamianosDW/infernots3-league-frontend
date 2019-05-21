@@ -1,12 +1,12 @@
 <div>
   <h1>Profil</h1>
   <label for="login">Login:</label><br />
-  <input type="text" id="login" class="orange_input" [value]="appComponent.username" disabled /><br /><br />
+  <input type="text" id="login" class="orange_input" [value]="appComponent.userInfo.username" disabled /><br /><br />
   <label for="ts3Nickname">Nick (TS3):</label><br />
   <input type="text" id="ts3Nickname" class="orange_input" [(ngModel)]="ts3Nickname" /><br /><br />
   <label for="lolNickname">Nazwa w grze League of Legends:</label><br />
   <input type="text" id="lolNickname" class="orange_input" [(ngModel)]="lolNickname" /><br /><br />
   <label for="csgoNickname">Nazwa w grze CS:GO:</label><br />
-  <input type="text" id="csgoNickname" class="orange_input" [(ngModel)]="lolNickname" /><br /><br />
+  <input type="text" id="csgoNickname" class="orange_input" [(ngModel)]="csgoNickname" /><br /><br />
   <button class="submit_button" (click)="updateProfileInfo()">Zaktualizuj informacje!</button>
 </div>
