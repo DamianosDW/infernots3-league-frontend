@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { LolComponent } from './lol/lol.component';
 import { CsgoComponent } from './csgo/csgo.component';
 import { FooterComponent } from './footer/footer.component';
-import { RouterModule, Routes } from "@angular/router";
 import { MatchScheduleComponent } from './match-schedule/match-schedule.component';
 import { RegisteredPlayersComponent } from './registered-players/registered-players.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
@@ -15,11 +14,9 @@ import { LiveStreamComponent } from './live-stream/live-stream.component';
 import { ProfileComponent } from './profile/profile.component';
 import {HttpClientModule} from "@angular/common/http";
 import {HttpService} from "./http.service";
-
-const appRoutes: Routes = [
-  { path: 'leagueoflegends', component: LolComponent },
-  { path: 'csgo', component: CsgoComponent }
-];
+import { AppRoutingModule } from './app-routing.module';
+import { GamesComponent } from './games/games.component';
+import { StartPageComponent } from './start-page/start-page.component';
 
 @NgModule({
   declarations: [
@@ -32,12 +29,15 @@ const appRoutes: Routes = [
     RegistrationFormComponent,
     LoginFormComponent,
     LiveStreamComponent,
-    ProfileComponent
+    ProfileComponent,
+    GamesComponent,
+    StartPageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]
