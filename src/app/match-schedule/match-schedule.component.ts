@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AppComponent} from "../app.component";
 
 @Component({
   selector: 'app-match-schedule',
@@ -9,7 +10,7 @@ export class MatchScheduleComponent
 {
   matches: Array<Match>;
 
-  constructor()
+  constructor(private appComponent: AppComponent)
   {
     this.matches = [new Match(new Date(), 'Gracz #1', 'Gracz #3'), new Match(new Date(), 'Gracz #5', 'Gracz #2')];
   }
