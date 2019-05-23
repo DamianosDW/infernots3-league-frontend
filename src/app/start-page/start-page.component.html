@@ -1,0 +1,11 @@
+<div id="info_container">
+  <h1>{{appComponent.title}}</h1>
+  <p>Witaj na oficjalnej stronie amatorskiej ligi e-sportowej!</p>
+  <p>Poniżej znajdziesz przyciski umożliwiające wykonanie pewnych akcji (np. rejestracja konta).</p>
+  <div id="buttons_container">
+    <button class="game_button" (click)="showRegisterForm()">Zarejestruj się!</button>
+    <button class="game_button" (click)="showLoginFormPage()">Zaloguj się!</button><br />
+    <button class="game_button" (click)="showMatchSchedulePage()">Harmonogram rozgrywek!</button>
+    <button class="game_button" (click)="showLiveStreamPage()">Transmisja LIVE!</button>
+  </div>
+</div>
