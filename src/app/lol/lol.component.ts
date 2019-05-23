@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AppComponent } from "../app.component";
+import {StartPageComponent} from "../start-page/start-page.component";
 
 @Component({
   selector: 'app-lol',
@@ -11,12 +12,12 @@ export class LolComponent
   showMatchSchedule = true;
   showLiveStream = false;
 
-  constructor(private appComponent: AppComponent) { }
+  constructor(private appComponent: AppComponent, private startPageComponent: StartPageComponent) { }
 
   joinGames() //TODO USE API TO GET PROPER DATA
   {
     console.log('Joined ;)');
-    alert("Dołączyłeś/aś do rozgrywek!\nTwój następny mecz odbędzie się --.--.---- o godzinie --:--.\nNick gracza, z którym się zmieszysz to: nick_gracza.");
+    alert("Dołączyłeś/aś do rozgrywek!\nTwój następny mecz odbędzie się --.--.---- o godzinie --:--.\nNick gracza, z którym się zmierzysz to: nick_gracza.");
   }
 
   showMatchSchedulePage()

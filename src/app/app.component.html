@@ -5,37 +5,7 @@
       <button class="user_info_button" (click)="logOut()">Wyloguj się</button></p>
   </div>
 
-  <div *ngIf="showInfoContainer" id="info_container">
-    <h1>{{title}}</h1>
-    <p>Witaj na oficjalnej stronie amatorskiej ligi e-sportowej!</p>
-    <p>Wybierz interesującą Ciebie grę i dołącz do rozgrywek ;)</p>
-    <div id="buttons_container" *ngIf="userInfo.username.length == 0">
-      <button class="game_button" (click)="showRegisterForm()">Zarejestruj się!</button>
-      <button class="game_button" (click)="showLoginFormPage()">Zaloguj się!</button><br />
-      <button class="game_button" (click)="showMatchSchedulePage()">Harmonogram rozgrywek!</button>
-      <button class="game_button" (click)="showLiveStreamPage()">Transmisja LIVE!</button>
-    </div>
-    <div id="games_container" *ngIf="userInfo.username.length > 0">
-      <button class="game_button" (click)="showLeagueOfLegendsPage()"><img src="{{leagueOfLegendsLogo}}" alt="League Of Legends" style="width: 375px; height: 125px;"/></button>
-      <button class="game_button" (click)="showCSGOPage()"><img src="{{csgoLogo}}" alt="Counter Strike: Global Offensive" style="width: 375px; height: 125px;"/></button>
-    </div>
-  </div>
-
-  <div class="component_container">
-    <app-lol *ngIf="showLeagueOfLegends"></app-lol>
-    <app-csgo *ngIf="showCSGO"></app-csgo>
-    <app-registration-form *ngIf="showRegistrationForm"></app-registration-form>
-    <app-login-form *ngIf="showLoginForm"></app-login-form>
-    <div *ngIf="showProfile" style="margin-top: 100px;">
-      <button class="submit_button" style="margin: 15px;" (click)="showInfoContainerPage()">Strona główna</button>
-      <app-profile></app-profile>
-    </div>
-    <div *ngIf="showMatchSchedule" style="margin-top: 100px;">
-      <button class="submit_button" style="margin: 15px;" (click)="showInfoContainerPage()">Strona główna</button>
-      <app-match-schedule></app-match-schedule>
-    </div>
-    <app-live-stream *ngIf="showLiveStream"></app-live-stream>
-  </div>
+  <router-outlet></router-outlet>
 
   <app-footer></app-footer>
 </div>
