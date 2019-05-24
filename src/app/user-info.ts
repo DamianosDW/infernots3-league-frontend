@@ -1,10 +1,10 @@
 export class UserInfo
 {
-  userId?: number;
-  username?: string;
-  ts3Nickname?: string;
-  lolNickname?: string;
-  csgoNickname?: string;
+  private userId?: number;
+  private username?: string;
+  private ts3Nickname?: string;
+  private lolNickname?: string;
+  private csgoNickname?: string;
 
   constructor(userId: number, username: string, ts3Nickname: string, lolNickname: string, csgoNickname: string)
   {
