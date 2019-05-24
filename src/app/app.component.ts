@@ -9,8 +9,6 @@ import { Router } from "@angular/router";
 export class AppComponent
 {
   title = 'Inferno TS3 League';
-  leagueOfLegendsLogo = '../assets/images/lol-logo.png';
-  csgoLogo = '../assets/images/csgo-logo.png';
   userInfo: UserInfo = {username: ''};
 
   constructor(private router: Router) { }

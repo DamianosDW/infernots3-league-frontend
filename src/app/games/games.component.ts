@@ -10,6 +10,9 @@ import {Router} from "@angular/router";
 export class GamesComponent implements OnInit
 {
 
+  leagueOfLegendsLogo = '../../assets/images/lol-logo.png';
+  csgoLogo = '../../assets/images/csgo-logo.png';
+
   constructor(private appComponent: AppComponent, private router: Router) { }
 
   ngOnInit() {
