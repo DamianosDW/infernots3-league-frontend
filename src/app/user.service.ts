@@ -12,11 +12,11 @@ export class UserService {
 
   public saveUserInfo(userInfo: UserInfo)
   {
-    sessionStorage.setItem('userId', userInfo.userId + '');
-    sessionStorage.setItem('username', userInfo.username);
-    sessionStorage.setItem('ts3Nickname', userInfo.ts3Nickname);
-    sessionStorage.setItem('lolNickname', userInfo.lolNickname);
-    sessionStorage.setItem('csgoNickname', userInfo.csgoNickname);
+    sessionStorage.setItem('userId', userInfo.getUserId() + '');
+    sessionStorage.setItem('username', userInfo.getUsername());
+    sessionStorage.setItem('ts3Nickname', userInfo.getTs3Nickname());
+    sessionStorage.setItem('lolNickname', userInfo.getLolNickname());
+    sessionStorage.setItem('csgoNickname', userInfo.getCsgoNickname());
   }
 
   public getUserInfo(): UserInfo | null

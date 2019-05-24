@@ -12,8 +12,8 @@ import {UserInfo} from "../user-info";
 })
 export class LoginFormComponent
 {
-  login: string;
-  password: string;
+  login = '';
+  password = '';
 
   constructor(private appComponent: AppComponent, private router: Router, private httpService: HttpService, private userService: UserService) { }
 

@@ -1,6 +1,6 @@
 <div id="main_container">
-  <div id="user_container" *ngIf="userInfo.username?.length > 0" style="">
-    <p>Zalogowany jako: <b>{{userInfo.username}}</b><br />
+  <div id="user_container" *ngIf="userService.getUserInfo() !== null && userService.getUserInfo().getUsername().length > 0" style="">
+    <p>Zalogowany jako: <b>{{userService.getUserInfo().getUsername()}}</b><br />
       <button class="user_info_button" (click)="showProfilePage()">Profil</button>
       <button class="user_info_button" (click)="logOut()">Wyloguj się</button></p>
   </div>
