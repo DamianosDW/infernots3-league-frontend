@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {AppComponent} from "../app.component";
 import {HttpService} from "../http.service";
 import {Router} from "@angular/router";
+import {UserService} from "../user.service";
+import {UserInfo} from "../user-info";
 
 @Component({
   selector: 'app-login-form',
@@ -10,10 +12,10 @@ import {Router} from "@angular/router";
 })
 export class LoginFormComponent
 {
-  login = '';
-  password = '';
+  login: string;
+  password: string;
 
-  constructor(private appComponent: AppComponent, private router: Router, private httpService: HttpService) { }
+  constructor(private appComponent: AppComponent, private router: Router, private httpService: HttpService, private userService: UserService) { }
 
   logIn()
   {
@@ -23,7 +25,7 @@ export class LoginFormComponent
       {
         // Get user info
         this.httpService.getUserInfo(this.login).subscribe(userInfo => {
-          this.appComponent.userInfo = userInfo;
+          this.userService.saveUserInfo(<UserInfo>userInfo);
         });
 
         // Show main page

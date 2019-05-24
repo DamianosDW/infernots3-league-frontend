@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
+import {UserService} from "./user.service";
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,8 @@ import { Router } from "@angular/router";
 export class AppComponent
 {
   title = 'Inferno TS3 League';
-  userInfo: UserInfo = {username: ''};
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   showStartPage()
   {
@@ -32,17 +32,8 @@ export class AppComponent
 
   logOut()
   {
-    this.userInfo.username = '';
+    this.userService.clearSessionStorage();
     this.router.navigateByUrl('start');
   }
   //TODO MOVE THIS TO NEW COMPONENT
-}
-
-export interface UserInfo
-{
-  userId?: number;
-  username?: string;
-  ts3Nickname?: string;
-  lolNickname?: string;
-  csgoNickname?: string;
 }
