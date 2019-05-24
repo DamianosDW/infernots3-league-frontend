@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import {AppComponent, UserInfo} from "../app.component";
+import {AppComponent} from "../app.component";
 import {HttpService} from "../http.service";
+import {UserService} from "../user.service";
+import {UserInfo} from "../user-info";
 
 @Component({
   selector: 'app-profile',
@@ -9,32 +11,25 @@ import {HttpService} from "../http.service";
 })
 export class ProfileComponent
 {
-  ts3Nickname = this.appComponent.userInfo.ts3Nickname;
-  lolNickname = this.appComponent.userInfo.lolNickname;
-  csgoNickname = this.appComponent.userInfo.csgoNickname;
+  ts3Nickname = this.userService.getUserInfo().getTs3Nickname();
+  lolNickname = (this.userService.getUserInfo().getLolNickname() !== 'null') ? this.userService.getUserInfo().getLolNickname(): '';
+  csgoNickname = (this.userService.getUserInfo().getCsgoNickname() !== 'null') ? this.userService.getUserInfo().getCsgoNickname() : '';
   updatedUserInfo: UserInfo;
 
-  constructor(private appComponent: AppComponent, private httpService: HttpService) { }
+  constructor(private appComponent: AppComponent, private httpService: HttpService, private userService: UserService) { }
 
   updateProfileInfo()
   {
     if(this.ts3Nickname.length > 0 || (this.lolNickname.length > 0 || this.csgoNickname.length > 0))
     {
       // Prepare necessary data
-      this.updatedUserInfo = {
-        userId: this.appComponent.userInfo.userId,
-        username: this.appComponent.userInfo.username,
-        ts3Nickname:  this.ts3Nickname,
-        lolNickname: this.lolNickname,
-        csgoNickname: this.csgoNickname
-      };
+      this.updatedUserInfo = new UserInfo(this.userService.getUserInfo().getUserId(), this.userService.getUserInfo().getUsername(), this.ts3Nickname, this.lolNickname, this.csgoNickname);
 
       this.httpService.updateUserInfo(this.updatedUserInfo).subscribe(userInfoUpdated => {
         if(userInfoUpdated)
         {
-          this.appComponent.userInfo.ts3Nickname = this.ts3Nickname;
-          this.appComponent.userInfo.lolNickname = this.lolNickname;
-          this.appComponent.userInfo.csgoNickname = this.csgoNickname;
+          this.userService.clearSessionStorage();
+          this.userService.saveUserInfo(this.updatedUserInfo);
           alert("Zaktualizowano profil!");
         }
         else
