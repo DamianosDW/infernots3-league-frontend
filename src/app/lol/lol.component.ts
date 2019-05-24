@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AppComponent } from "../app.component";
-import {StartPageComponent} from "../start-page/start-page.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-lol',
@@ -12,7 +12,7 @@ export class LolComponent
   showMatchSchedule = true;
   showLiveStream = false;
 
-  constructor(private appComponent: AppComponent, private startPageComponent: StartPageComponent) { }
+  constructor(private appComponent: AppComponent, private router: Router) { }
 
   joinGames() //TODO USE API TO GET PROPER DATA
   {
@@ -24,6 +24,11 @@ export class LolComponent
   {
     this.showMatchSchedule = true;
     this.showLiveStream = false;
+  }
+
+  showLiveStreamPage()
+  {
+    this.router.navigateByUrl('live');
   }
 
 
