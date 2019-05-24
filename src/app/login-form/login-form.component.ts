@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AppComponent} from "../app.component";
 import {HttpService} from "../http.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-form',
@@ -12,7 +13,7 @@ export class LoginFormComponent
   login = '';
   password = '';
 
-  constructor(private appComponent: AppComponent, private httpService: HttpService) { }
+  constructor(private appComponent: AppComponent, private router: Router, private httpService: HttpService) { }
 
   logIn()
   {
@@ -26,8 +27,7 @@ export class LoginFormComponent
         });
 
         // Show main page
-        this.appComponent.showInfoContainer = true;
-        this.appComponent.showLoginForm = false;
+        this.router.navigateByUrl('games');
       }
       else
       {
