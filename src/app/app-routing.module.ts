@@ -9,17 +9,19 @@ import {RegistrationFormComponent} from "./registration-form/registration-form.c
 import {ProfileComponent} from "./profile/profile.component";
 import {StartPageComponent} from "./start-page/start-page.component";
 import {GamesComponent} from "./games/games.component";
+import {AuthorizationGuard} from "./authorization.guard";
+import {RedirectionGuard} from "./redirection.guard";
 
 const routes: Routes = [
-  { path: "login", component: LoginFormComponent },
-  { path: "leagueoflegends", component: LolComponent },
-  { path: "csgo", component: CsgoComponent },
+  { path: "login", component: LoginFormComponent, canActivate: [RedirectionGuard] },
+  { path: "leagueoflegends", component: LolComponent, canActivate: [AuthorizationGuard] },
+  { path: "csgo", component: CsgoComponent, canActivate: [AuthorizationGuard] },
   { path: "live", component: LiveStreamComponent },
   { path: "schedule", component: MatchScheduleComponent },
-  { path: "register", component: RegistrationFormComponent },
-  { path: "profile", component: ProfileComponent },
-  { path: "start", component: StartPageComponent },
-  { path: "games", component: GamesComponent },
+  { path: "register", component: RegistrationFormComponent, canActivate: [RedirectionGuard] },
+  { path: "profile", component: ProfileComponent, canActivate: [AuthorizationGuard] },
+  { path: "start", component: StartPageComponent, canActivate: [RedirectionGuard] },
+  { path: "games", component: GamesComponent, canActivate: [AuthorizationGuard] },
   { path: "**", redirectTo: 'start' }
 ];
 
