@@ -14,20 +14,21 @@ export class ProfileComponent
   // ts3Nickname = this.userService.getUserInfo().getTs3Nickname();
   // lolNickname = (this.userService.getUserInfo().getLolNickname() !== 'null') ? this.userService.getUserInfo().getLolNickname(): '';
   // csgoNickname = (this.userService.getUserInfo().getCsgoNickname() !== 'null') ? this.userService.getUserInfo().getCsgoNickname() : '';
+  username = this.userService.getUserInfo().username;
   ts3Nickname = this.userService.getUserInfo().ts3Nickname;
   lolNickname = (this.userService.getUserInfo().lolNickname !== 'undefined' && this.userService.getUserInfo().lolNickname !== 'null') ? this.userService.getUserInfo().lolNickname: '';
   csgoNickname = (this.userService.getUserInfo().csgoNickname !== 'undefined' && this.userService.getUserInfo().csgoNickname !== 'null') ? this.userService.getUserInfo().csgoNickname : '';
-  updatedUserInfo: UserInfo;
+  updatedUserInfo: UserInfo = {};
 
   constructor(private appComponent: AppComponent, private httpService: HttpService, private userService: UserService) { }
 
   updateProfileInfo()
   {
-    if(this.ts3Nickname.length > 0 || (this.lolNickname.length > 0 || this.csgoNickname.length > 0))
+    if((this.username.length > 0 && this.ts3Nickname.length > 0) && (this.lolNickname.length > 0 || this.csgoNickname.length > 0))
     {
       // Prepare necessary data
       // this.updatedUserInfo = new UserInfo(this.userService.getUserInfo().getUserId(), this.userService.getUserInfo().getUsername(), this.ts3Nickname, this.lolNickname, this.csgoNickname);
-      this.updatedUserInfo.username = this.userService.getUserInfo().username;
+      this.updatedUserInfo.username = this.username;
       this.updatedUserInfo.ts3Nickname = this.ts3Nickname;
       this.updatedUserInfo.lolNickname = this.lolNickname;
       this.updatedUserInfo.csgoNickname = this.csgoNickname;
@@ -37,11 +38,13 @@ export class ProfileComponent
         {
           this.userService.clearSessionStorage();
           this.userService.saveUserInfo(this.updatedUserInfo);
-          alert("Zaktualizowano profil!");
+          alert('Zaktualizowano profil!');
         }
         else
-          alert("Nie udało się zaktualizować profilu! Spróbuj ponownie później.");
+          alert('Nie udało się zaktualizować profilu! Spróbuj ponownie później.');
       });
     }
+    else
+      alert('Nie podałeś/aś nazwy w grze!');
   }
 }
