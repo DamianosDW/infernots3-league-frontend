@@ -17,6 +17,9 @@ import {HttpService} from "./http.service";
 import { AppRoutingModule } from './app-routing.module';
 import { GamesComponent } from './games/games.component';
 import { StartPageComponent } from './start-page/start-page.component';
+import {UserService} from "./user.service";
+import {AuthorizationGuard} from "./authorization.guard";
+import {RedirectionGuard} from "./redirection.guard";
 
 @NgModule({
   declarations: [
@@ -39,7 +42,12 @@ import { StartPageComponent } from './start-page/start-page.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [HttpService],
+  providers: [
+    HttpService,
+    UserService,
+    AuthorizationGuard,
+    RedirectionGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
