@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {AppComponent} from "../app.component";
 import {HttpService} from "../http.service";
 import {Router} from "@angular/router";
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-registration-form',
@@ -14,7 +15,7 @@ export class RegistrationFormComponent
   password = '';
   ts3Nickname = '';
 
-  constructor(private appComponent: AppComponent, private router: Router, private httpService: HttpService) { }
+  constructor(private appComponent: AppComponent, private router: Router, private httpService: HttpService, private userService: UserService) { }
 
   createUserAccount()
   {
@@ -22,9 +23,13 @@ export class RegistrationFormComponent
     {
       if(accountCreated)
       {
+        this.userService.saveUserInfo({
+          username: this.login,
+          ts3Nickname: this.ts3Nickname
+        });
+        // this.userService.getUserInfo().setUsername(this.login);
+        // this.userService.getUserInfo().setTs3Nickname(this.ts3Nickname);
         alert('Konto zostało utworzone!\nUzupełnij nick (zakładka "Profil"), którym posługujesz się w wybranej grze i dołącz do rozgrywek ;)\nPowodzenia!');
-        this.appComponent.userInfo.username = this.login;
-        this.appComponent.userInfo.ts3Nickname = this.ts3Nickname;
         this.router.navigateByUrl('games');
       }
       else

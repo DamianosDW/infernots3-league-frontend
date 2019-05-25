@@ -11,9 +11,12 @@ import {UserInfo} from "../user-info";
 })
 export class ProfileComponent
 {
-  ts3Nickname = this.userService.getUserInfo().getTs3Nickname();
-  lolNickname = (this.userService.getUserInfo().getLolNickname() !== 'null') ? this.userService.getUserInfo().getLolNickname(): '';
-  csgoNickname = (this.userService.getUserInfo().getCsgoNickname() !== 'null') ? this.userService.getUserInfo().getCsgoNickname() : '';
+  // ts3Nickname = this.userService.getUserInfo().getTs3Nickname();
+  // lolNickname = (this.userService.getUserInfo().getLolNickname() !== 'null') ? this.userService.getUserInfo().getLolNickname(): '';
+  // csgoNickname = (this.userService.getUserInfo().getCsgoNickname() !== 'null') ? this.userService.getUserInfo().getCsgoNickname() : '';
+  ts3Nickname = this.userService.getUserInfo().ts3Nickname;
+  lolNickname = (this.userService.getUserInfo().lolNickname !== 'undefined' && this.userService.getUserInfo().lolNickname !== 'null') ? this.userService.getUserInfo().lolNickname: '';
+  csgoNickname = (this.userService.getUserInfo().csgoNickname !== 'undefined' && this.userService.getUserInfo().csgoNickname !== 'null') ? this.userService.getUserInfo().csgoNickname : '';
   updatedUserInfo: UserInfo;
 
   constructor(private appComponent: AppComponent, private httpService: HttpService, private userService: UserService) { }
@@ -23,7 +26,11 @@ export class ProfileComponent
     if(this.ts3Nickname.length > 0 || (this.lolNickname.length > 0 || this.csgoNickname.length > 0))
     {
       // Prepare necessary data
-      this.updatedUserInfo = new UserInfo(this.userService.getUserInfo().getUserId(), this.userService.getUserInfo().getUsername(), this.ts3Nickname, this.lolNickname, this.csgoNickname);
+      // this.updatedUserInfo = new UserInfo(this.userService.getUserInfo().getUserId(), this.userService.getUserInfo().getUsername(), this.ts3Nickname, this.lolNickname, this.csgoNickname);
+      this.updatedUserInfo.username = this.userService.getUserInfo().username;
+      this.updatedUserInfo.ts3Nickname = this.ts3Nickname;
+      this.updatedUserInfo.lolNickname = this.lolNickname;
+      this.updatedUserInfo.csgoNickname = this.csgoNickname;
 
       this.httpService.updateUserInfo(this.updatedUserInfo).subscribe(userInfoUpdated => {
         if(userInfoUpdated)
