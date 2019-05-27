@@ -11,7 +11,7 @@ export class HttpService {
 
   userCanLogIn(login: string, password: string)
   {
-    return this.httpClient.post<boolean>('http://localhost:8080/api/users/logIn', {
+    return this.httpClient.post<boolean>('http://localhost:8080/api/users/login', {
       login: login,
       password: password
     });
@@ -34,6 +34,11 @@ export class HttpService {
   updateUserInfo(userInfo: UserInfo)
   {
     return this.httpClient.put('http://localhost:8080/api/users/info/update', userInfo);
+  }
+
+  getUserStats(ts3Nickname: string)
+  {
+    return this.httpClient.get('http://localhost:8080/api/userstats/' + ts3Nickname);
   }
 
 
