@@ -21,6 +21,7 @@ export class UserService {
     sessionStorage.setItem('ts3Nickname', userInfo.ts3Nickname);
     sessionStorage.setItem('lolNickname', userInfo.lolNickname);
     sessionStorage.setItem('csgoNickname', userInfo.csgoNickname);
+    sessionStorage.setItem('leaguePoints', '-');
   }
 
   public getUserInfo(): UserInfo | null
@@ -43,6 +44,16 @@ export class UserService {
     }
 
     return null;
+  }
+
+  public getUserLeaguePoints()
+  {
+    return sessionStorage.getItem('leaguePoints');
+  }
+
+  public setUserLeaguePoints(points: number)
+  {
+    sessionStorage.setItem('leaguePoints', points + '')
   }
 
   public clearSessionStorage()
