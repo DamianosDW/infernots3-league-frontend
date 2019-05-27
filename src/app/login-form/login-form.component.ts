@@ -3,7 +3,6 @@ import {AppComponent} from "../app.component";
 import {HttpService} from "../http.service";
 import {Router} from "@angular/router";
 import {UserService} from "../user.service";
-import {UserStats} from "../userstats";
 
 @Component({
   selector: 'app-login-form',
@@ -26,12 +25,6 @@ export class LoginFormComponent
         // Get user info
         this.httpService.getUserInfo(this.login).subscribe(userInfo => {
           this.userService.saveUserInfo(userInfo);
-        });
-        // Get user league points
-        this.httpService.getUserStats(this.userService.getUserInfo().ts3Nickname).subscribe(userStatsData => {
-          let userStats: UserStats = userStatsData;
-
-          this.userService.setUserLeaguePoints(userStats.leaguePoints);
         });
 
         // Show main page
