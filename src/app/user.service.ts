@@ -63,5 +63,6 @@ export class UserService {
     sessionStorage.removeItem('ts3Nickname');
     sessionStorage.removeItem('lolNickname');
     sessionStorage.removeItem('csgoNickname');
+    sessionStorage.removeItem('leaguePoints');
   }
 }
