@@ -23,11 +23,13 @@ export class RegistrationFormComponent
     {
       if(accountCreated)
       {
-        this.userService.saveUserInfo({
-          username: this.login,
-          ts3Nickname: this.ts3Nickname
+        this.httpService.getUserId(this.login).subscribe(userId => {
+          this.userService.saveUserInfo({
+            userId: userId,
+            username: this.login,
+            ts3Nickname: this.ts3Nickname
+          });
         });
-        this.userService.setUserLeaguePoints(0);
         // this.userService.getUserInfo().setUsername(this.login);
         // this.userService.getUserInfo().setTs3Nickname(this.ts3Nickname);
         alert('Konto zostało utworzone!\nUzupełnij nick (zakładka "Profil"), którym posługujesz się w wybranej grze i dołącz do rozgrywek ;)\nPowodzenia!');
