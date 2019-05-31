@@ -1,6 +1,7 @@
 <div>
   <h1>Ranking</h1>
   <ol>
-    <li *ngFor="let player of [].constructor('Gracz #1 | 12 PKT.', 'Gracz #2 | 10 PKT.', 'Gracz #3 | 8 PKT.', 'Gracz #4 | 6 PKT.', 'Gracz #5 | 0 PKT.')" style="border-bottom: 1px solid white">{{player}}</li>
+    <li *ngIf="userStats.length == 0">Brak zapisanych graczy!</li>
+    <li *ngFor="let playerStats of userStats" style="border-bottom: 1px solid white" [hidden]="userStats.length == 0">{{playerStats.user}} | {{playerStats.leaguePoints}} PKT.</li>
   </ol>
 </div>
