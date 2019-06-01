@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import {UserInfo} from "./user-info";
 import {UserStats} from "./userstats";
+import {Match} from "./match";
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,16 @@ export class HttpService {
   getUserId(username: string)
   {
     return this.httpClient.get<number>('http://localhost:8080/api/users/' + username + '/userId');
+  }
+
+  getOpponent(userId: number)
+  {
+    return this.httpClient.get<UserInfo>('http://localhost:8080/api/matches/user/' + userId + '/opponent');
+  }
+
+  createMatch(match: Match)
+  {
+    return this.httpClient.post('http://localhost:8080/api/matches/create', match);
   }
 
 
