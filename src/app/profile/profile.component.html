@@ -9,5 +9,5 @@
   <input type="text" id="lolNickname" class="orange_input" [(ngModel)]="lolNickname" /><br /><br />
   <label for="csgoNickname">Nazwa w grze CS:GO:</label><br />
   <input type="text" id="csgoNickname" class="orange_input" [(ngModel)]="csgoNickname" /><br /><br />
-  <button class="submit_button" (click)="updateProfileInfo()">Zaktualizuj informacje!</button>
+  <button class="submit_button" (click)="updateProfileInfo()" [disabled]="ts3Nickname.length === 0">Zaktualizuj informacje!</button>
 </div>
