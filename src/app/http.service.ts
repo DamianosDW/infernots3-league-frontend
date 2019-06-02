@@ -73,5 +73,15 @@ export class HttpService {
     return this.httpClient.get<Array<Match>>('http://localhost:8080/api/matches');
   }
 
+  getNextMatch(userId: number)
+  {
+    return this.httpClient.get<Match>('http://localhost:8080/api/matches/' + userId + '/nextMatch');
+  }
+
+  getAllLolNicknames()
+  {
+    return this.httpClient.get<Array<string>>('http://localhost:8080/api/userstats/lolNicknames');
+  }
+
 
 }
