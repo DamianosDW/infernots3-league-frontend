@@ -68,5 +68,10 @@ export class HttpService {
     return this.httpClient.post('http://localhost:8080/api/matches/create', match);
   }
 
+  getCurrentMatches()
+  {
+    return this.httpClient.get<Array<Match>>('http://localhost:8080/api/matches');
+  }
+
 
 }
