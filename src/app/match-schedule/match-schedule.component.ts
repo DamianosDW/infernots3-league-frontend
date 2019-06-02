@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import {AppComponent} from "../app.component";
+import {HttpService} from "../http.service";
+import {Match} from "../match";
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-match-schedule',
@@ -8,29 +11,24 @@ import {AppComponent} from "../app.component";
 })
 export class MatchScheduleComponent
 {
-  matches: Array<Match>;
+  matches: Array<Match> = [];
+  matchStartDates: Array<Date> = [];
+  currentDateTime: Date = new Date();
 
-  constructor(private appComponent: AppComponent)
+  constructor(private appComponent: AppComponent, private httpService: HttpService, private userService: UserService)
   {
-    this.matches = [new Match(new Date(), 'Gracz #1', 'Gracz #3'), new Match(new Date(), 'Gracz #5', 'Gracz #2')];
+    this.httpService.getCurrentMatches().subscribe(currentMatches => {
+      this.matches = currentMatches;
+
+      // Convert match start dates to proper format (dd.MM.yyyy HH:mm)
+      this.matches.forEach((match, index) => {
+        this.matchStartDates[index] = new Date(match.matchStartDate[0] + '.' + match.matchStartDate[1] + '.' + match.matchStartDate[2] + ' ' + match.matchStartDate[3] + ':' + match.matchStartDate[4] + '0');
+      });
+    });
   }
 
   showPlayerStats()
   {
 
-  }
-}
-
-class Match
-{
-  public date: Date;
-  public firstPlayer: string;
-  public secondPlayer: string;
-
-  constructor(date: Date, firstPlayer: string, secondPlayer: string)
-  {
-    this.date = date;
-    this.firstPlayer = firstPlayer;
-    this.secondPlayer = secondPlayer;
   }
 }

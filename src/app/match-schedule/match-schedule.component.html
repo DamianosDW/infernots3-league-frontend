@@ -1,13 +1,51 @@
 <div>
   <button class="submit_button" style="margin: 15px;" (click)="appComponent.showStartPage()">Strona główna</button>
   <h2>Harmonogram rozgrywek ligowych</h2>
-  <table style="border: 2px solid white;">
-    <tr *ngFor="let match of matches">
-      <td>{{match.date | date: 'dd-MM-yyyy HH:mm'}}</td>
-      <td>{{match.firstPlayer}}</td>
-      <td>{{match.secondPlayer}}</td>
-      <td><button (click)="showPlayerStats()">Statystyki graczy</button></td>
-    </tr>
-  </table>
-
+  <div *ngIf="matches.length === 0">
+    <p>Brak rozgrywek w tym tygodniu.</p>
+  </div>
+  <div *ngIf="matches.length > 0">
+    <table style="border: 2px solid white;">
+      <tr *ngFor="let match of matches; let i = index">
+        <td>
+          {{
+            appComponent.convertDateNumberToProperFormat(matchStartDates[i].getDate()) + '.'
+            + appComponent.convertDateNumberToProperFormat((matchStartDates[i].getMonth() + 1)) + '.'
+            + appComponent.convertDateNumberToProperFormat(matchStartDates[i].getFullYear()) + ' '
+            + appComponent.convertDateNumberToProperFormat(matchStartDates[i].getHours()) + ':'
+            + appComponent.convertDateNumberToProperFormat(matchStartDates[i].getMinutes())
+          }}
+        </td>
+        <td>
+          {{match.firstPlayer.ts3Nickname}}<br />
+          ({{match.firstPlayer.lolNickname}})<br />
+        </td>
+        <td>
+          {{match.secondPlayer.ts3Nickname}}<br />
+          ({{match.secondPlayer.lolNickname}})<br />
+        </td>
+        <td>
+          P1:<br />
+          {{match.firstPlayerScore}}<br />
+          <hr *ngIf="this.userService.getUserInfo().username == 'admin'" />
+          <button *ngIf="this.userService.getUserInfo().username === 'admin'" class="admin_button">+</button>
+          <button *ngIf="this.userService.getUserInfo().username === 'admin'" class="admin_button">-</button>
+        </td>
+        <td>
+          P2:<br />
+          {{match.secondPlayerScore}}<br />
+          <hr *ngIf="this.userService.getUserInfo().username === 'admin'" />
+          <button *ngIf="this.userService.getUserInfo().username === 'admin'" class="admin_button">+</button>
+          <button *ngIf="this.userService.getUserInfo().username === 'admin'" class="admin_button">-</button>
+        </td>
+        <td *ngIf="match.matchEnded"><span style="color: green">Mecz zakończony</span></td>
+        <td *ngIf="!match.matchEnded && currentDateTime >= matchStartDates[i]"><span style="color: orange">Mecz w toku</span></td>
+        <td>
+          <button (click)="showPlayerStats()">Statystyki graczy</button><br />
+          <hr *ngIf="this.userService.getUserInfo().username == 'admin'" />
+          <button *ngIf="this.userService.getUserInfo().username == 'admin'">Zakończ mecz</button>
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>
