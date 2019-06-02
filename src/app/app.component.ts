@@ -36,4 +36,16 @@ export class AppComponent
     this.router.navigateByUrl('start');
   }
   //TODO MOVE THIS TO NEW COMPONENT
+
+  convertDateNumberToProperFormat(number: number): string
+  {
+    if(number === 0)
+    {
+      return number + '0';
+    }
+    else if(number > 0 && number < 10)
+      return '0' + number;
+    else
+      return number + '';
+  }
 }
