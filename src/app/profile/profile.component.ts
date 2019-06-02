@@ -22,23 +22,41 @@ export class ProfileComponent
   {
     if((this.username.length > 0 && this.ts3Nickname.length > 0) && (this.lolNickname.length > 0 || this.csgoNickname.length > 0))
     {
-      // Prepare necessary data
-      let updatedUserInfo: UserInfo = {};
-      updatedUserInfo.userId = this.userService.getUserInfo().userId;
-      updatedUserInfo.username = this.username;
-      updatedUserInfo.ts3Nickname = this.ts3Nickname;
-      updatedUserInfo.lolNickname = (this.lolNickname === '') ? null : this.lolNickname;
-      updatedUserInfo.csgoNickname = (this.csgoNickname === '') ? null : this.csgoNickname;
-
-      this.httpService.updateUserInfo(updatedUserInfo).subscribe(userInfoUpdated => {
-        if(userInfoUpdated)
+      // Check if lol nickname is unique
+      this.httpService.getAllLolNicknames().subscribe(lolNicknames => {
+        if(lolNicknames !== null)
         {
-          this.userService.clearSessionStorage();
-          this.userService.saveUserInfo(updatedUserInfo);
-          alert('Zaktualizowano profil!');
+          let nicknameIsUnique: boolean = true;
+          let lolNickname = this.lolNickname;
+          lolNicknames.forEach(function (nickname) {
+            if(nickname.toLowerCase() === lolNickname.toLowerCase())
+              nicknameIsUnique = false;
+          });
+
+          if(nicknameIsUnique)
+          {
+            // Prepare necessary data
+            let updatedUserInfo: UserInfo = {};
+            updatedUserInfo.userId = this.userService.getUserInfo().userId;
+            updatedUserInfo.username = this.username;
+            updatedUserInfo.ts3Nickname = this.ts3Nickname;
+            updatedUserInfo.lolNickname = (this.lolNickname === '') ? null : this.lolNickname;
+            updatedUserInfo.csgoNickname = (this.csgoNickname === '') ? null : this.csgoNickname;
+
+            this.httpService.updateUserInfo(updatedUserInfo).subscribe(userInfoUpdated => {
+              if(userInfoUpdated)
+              {
+                this.userService.clearSessionStorage();
+                this.userService.saveUserInfo(updatedUserInfo);
+                alert('Zaktualizowano profil!');
+              }
+              else
+                alert('Nie udało się zaktualizować profilu! Spróbuj ponownie później.');
+            });
+          }
+          else
+            alert('Ten nick jest używany przez innego gracza!');
         }
-        else
-          alert('Nie udało się zaktualizować profilu! Spróbuj ponownie później.');
       });
     }
     else
