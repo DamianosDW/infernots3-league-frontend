@@ -4,7 +4,6 @@ export interface UserInfo
   username?: string;
   ts3Nickname?: string;
   lolNickname?: string;
-  csgoNickname?: string;
 }
 // export class UserInfo
 // {

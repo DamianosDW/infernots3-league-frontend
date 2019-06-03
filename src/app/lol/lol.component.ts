@@ -138,7 +138,6 @@ export class LolComponent
         username: loggedInUserInfo.username,
         ts3Nickname: loggedInUserInfo.ts3Nickname,
         lolNickname: loggedInUserInfo.lolNickname,
-        csgoNickname: loggedInUserInfo.csgoNickname
       },
       secondPlayer: opponent,
       firstPlayerScore: 0,

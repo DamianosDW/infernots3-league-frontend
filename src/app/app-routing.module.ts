@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {LoginFormComponent} from "./login-form/login-form.component";
 import {LolComponent} from "./lol/lol.component";
-import {CsgoComponent} from "./csgo/csgo.component";
 import {LiveStreamComponent} from "./live-stream/live-stream.component";
 import {MatchScheduleComponent} from "./match-schedule/match-schedule.component";
 import {RegistrationFormComponent} from "./registration-form/registration-form.component";
@@ -16,7 +15,6 @@ import {RedirectionGuard} from "./redirection-guard";
 const routes: Routes = [
   { path: "login", component: LoginFormComponent, canActivate: [RedirectionGuard] },
   { path: "leagueoflegends", component: LolComponent, canActivate: [AuthorizationGuard] },
-  { path: "csgo", component: CsgoComponent, canActivate: [AuthorizationGuard] },
   { path: "live", component: LiveStreamComponent },
   { path: "schedule", component: MatchScheduleComponent },
   { path: "ranking", component: RegisteredPlayersComponent },

@@ -14,13 +14,12 @@ export class ProfileComponent
   username = this.userService.getUserInfo().username;
   ts3Nickname = this.userService.getUserInfo().ts3Nickname;
   lolNickname = (this.userService.getUserInfo().lolNickname !== 'undefined' && this.userService.getUserInfo().lolNickname !== 'null') ? this.userService.getUserInfo().lolNickname: '';
-  csgoNickname = (this.userService.getUserInfo().csgoNickname !== 'undefined' && this.userService.getUserInfo().csgoNickname !== 'null') ? this.userService.getUserInfo().csgoNickname : '';
 
   constructor(private appComponent: AppComponent, private httpService: HttpService, private userService: UserService) { }
 
   updateProfileInfo()
   {
-    if((this.username.length > 0 && this.ts3Nickname.length > 0) && (this.lolNickname.length > 0 || this.csgoNickname.length > 0))
+    if((this.username.length > 0 && this.ts3Nickname.length > 0) && this.lolNickname.length > 0)
     {
       // Check if lol nickname is unique
       this.httpService.getAllLolNicknames().subscribe(lolNicknames => {
@@ -41,7 +40,6 @@ export class ProfileComponent
             updatedUserInfo.username = this.username;
             updatedUserInfo.ts3Nickname = this.ts3Nickname;
             updatedUserInfo.lolNickname = (this.lolNickname === '') ? null : this.lolNickname;
-            updatedUserInfo.csgoNickname = (this.csgoNickname === '') ? null : this.csgoNickname;
 
             this.httpService.updateUserInfo(updatedUserInfo).subscribe(userInfoUpdated => {
               if(userInfoUpdated)

@@ -20,7 +20,6 @@ export class UserService {
     sessionStorage.setItem('username', userInfo.username);
     sessionStorage.setItem('ts3Nickname', userInfo.ts3Nickname);
     sessionStorage.setItem('lolNickname', userInfo.lolNickname);
-    sessionStorage.setItem('csgoNickname', userInfo.csgoNickname);
     sessionStorage.setItem('leaguePoints', '-');
   }
 
@@ -30,16 +29,14 @@ export class UserService {
     let username = sessionStorage.getItem('username');
     let ts3Nickname = sessionStorage.getItem('ts3Nickname');
     let lolNickname = sessionStorage.getItem('lolNickname');
-    let csgoNickname = sessionStorage.getItem('csgoNickname');
 
-    if(userId !== null && username !== null && ts3Nickname !== null && lolNickname !== null && csgoNickname !== null)
+    if(userId !== null && username !== null && ts3Nickname !== null && lolNickname !== null)
     {
       return {
         userId: parseInt(userId),
         username: username,
         ts3Nickname: ts3Nickname,
         lolNickname: lolNickname,
-        csgoNickname: csgoNickname
       };
     }
 
@@ -62,7 +59,6 @@ export class UserService {
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('ts3Nickname');
     sessionStorage.removeItem('lolNickname');
-    sessionStorage.removeItem('csgoNickname');
     sessionStorage.removeItem('leaguePoints');
   }
 }

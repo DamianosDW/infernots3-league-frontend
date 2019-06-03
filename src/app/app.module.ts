@@ -25,7 +25,6 @@ import {RedirectionGuard} from "./redirection-guard";
   declarations: [
     AppComponent,
     LolComponent,
-    CsgoComponent,
     FooterComponent,
     MatchScheduleComponent,
     RegisteredPlayersComponent,
