@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {UserInfo} from "./user-info";
 import {UserStats} from "./userstats";
 import {Match} from "./match";
@@ -83,5 +83,30 @@ export class HttpService {
     return this.httpClient.get<Array<string>>('http://localhost:8080/api/userstats/lolNicknames');
   }
 
+  endMatch(matchId: number)
+  {
+    return this.httpClient.put('http://localhost:8080/api/matches/' + matchId, {});
+  }
 
+  addLeaguePoint(matchId: number, userId: number, playerNumber: number)
+  {
+    return this.httpClient.put('http://localhost:8080/api/userstats/addLeaguePoint', {}, {
+      params: {
+        matchId: matchId + '',
+        userId: userId + '',
+        playerNumber: playerNumber + ''
+      }
+    });
+  }
+
+  removeLeaguePoint(matchId: number, userId: number, playerNumber: number)
+  {
+    return this.httpClient.put('http://localhost:8080/api/userstats/removeLeaguePoint', {}, {
+      params: {
+        matchId: matchId + '',
+        userId: userId + '',
+        playerNumber: playerNumber + ''
+      }
+    });
+  }
 }
