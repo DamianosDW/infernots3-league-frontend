@@ -19,7 +19,6 @@ import { GamesComponent } from './games/games.component';
 import { StartPageComponent } from './start-page/start-page.component';
 import {UserService} from "./user.service";
 import {AuthorizationGuard} from "./authorization.guard";
-import {RedirectionGuard} from "./redirection.guard";
 import {RedirectionGuard} from "./redirection-guard";
 
 @NgModule({
