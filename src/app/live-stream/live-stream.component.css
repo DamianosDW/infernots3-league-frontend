@@ -9,7 +9,7 @@
   margin-bottom: 48px;
 }
 
-#chat_and_stats
+#chat
 {
   width: 20%;
   height: 100%;
@@ -19,36 +19,6 @@
   bottom: 0;
   margin-bottom: 48px;
 }
-
-#first_player
-{
-  float: left;
-  width: 49%;
-  border-right: 1px solid white;
-  border-bottom: 1px solid white;
-  text-align: center;
-}
-
-#second_player
-{
-  float: right;
-  width: 49%;
-  border-left: 1px solid white;
-  border-bottom: 1px solid white;
-  text-align: center;
-}
-
-#first_player table, #second_player table
-{
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  border: 1px solid orange;
-  letter-spacing: 1px;
-}
-
-
 
 iframe
 {
@@ -62,7 +32,7 @@ td
 
 @media only screen and (max-width: 1366px)
 {
-  iframe, #first_player, #second_player
+  iframe
   {
     height: 535px;
   }
@@ -70,7 +40,7 @@ td
 
 @media only screen and (max-width: 1920px)
 {
-  iframe, #first_player, #second_player
+  iframe
   {
     height: 835px;
   }

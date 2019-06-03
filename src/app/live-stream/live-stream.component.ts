@@ -9,19 +9,11 @@ import { AppComponent } from "../app.component";
 export class LiveStreamComponent
 {
   showChat = true;
-  showStats = false;
 
   constructor(private appComponent: AppComponent) { }
 
   showChatView()
   {
     this.showChat = true;
-    this.showStats = false;
-  }
-
-  showStatsView()
-  {
-    this.showStats = true;
-    this.showChat = false;
   }
 }

@@ -3,35 +3,8 @@
     <button class="submit_button" style=" width: 100%; margin: 0;" (click)="appComponent.showStartPage()">Strona główna</button>
     <iframe src="https://player.twitch.tv/?channel=damianosdw" frameborder="0" allowfullscreen="true" scrolling="no" height="100%" width="100%"></iframe>
   </div>
-  <div id="chat_and_stats">
-    <button class="submit_button" style=" width: 50%; margin: 0;" (click)="showChatView()" [disabled]="showChat">Czat</button>
-    <button class="submit_button" style=" width: 50%; margin: 0;" (click)="showStatsView()" [disabled]="showStats">Statystyki</button><br />
+  <div id="chat">
+    <button class="submit_button" style=" width: 100%; margin: 0;" (click)="showChatView()" [disabled]="showChat">Czat</button>
     <iframe *ngIf="showChat" src="https://www.twitch.tv/embed/damianosdw/chat?darkpopout" frameborder="0" scrolling="no" height="100%" width="100%"></iframe>
-    <div id="stats" *ngIf="showStats"> <!-- TODO USE API TO GET PROPER DATA -->
-      <div id="first_player">
-        <p>Gracz</p>
-        <p><b>#1</b></p>
-        <hr />
-        <table>
-          <tr>
-            <td><span style="color: green;">W</span></td>
-            <td><span style="color: darkred;">P</span></td>
-            <td><span style="color: green;">W</span></td>
-          </tr>
-        </table>
-      </div>
-      <div id="second_player">
-        <p>Gracz</p>
-        <p><b>#3</b></p>
-        <hr />
-        <table>
-          <tr>
-            <td><span style="color: darkred;">P</span></td>
-            <td><span style="color: green;">W</span></td>
-            <td><span style="color: darkred;">P</span></td>
-          </tr>
-        </table>
-      </div>
-    </div>
   </div>
 </div>
