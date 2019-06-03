@@ -3,6 +3,7 @@ import {AppComponent} from "../app.component";
 import {HttpService} from "../http.service";
 import {Match} from "../match";
 import {UserService} from "../user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-match-schedule',
@@ -15,7 +16,7 @@ export class MatchScheduleComponent
   matchStartDates: Array<Date> = [];
   currentDateTime: Date = new Date();
 
-  constructor(private appComponent: AppComponent, private httpService: HttpService, private userService: UserService)
+  constructor(private appComponent: AppComponent, private httpService: HttpService, private userService: UserService, private router: Router)
   {
     this.httpService.getCurrentMatches().subscribe(currentMatches => {
       this.matches = currentMatches;
@@ -24,6 +25,92 @@ export class MatchScheduleComponent
       this.matches.forEach((match, index) => {
         this.matchStartDates[index] = new Date(match.matchStartDate[0] + '.' + match.matchStartDate[1] + '.' + match.matchStartDate[2] + ' ' + match.matchStartDate[3] + ':' + match.matchStartDate[4] + '0');
       });
+    });
+  }
+
+  addPointToP1(matchId: number, userId: number)
+  {
+    this.httpService.addLeaguePoint(matchId, userId, 1).subscribe(success => {
+      if(success)
+      {
+        // Refresh match-schedule component
+        this.router.navigateByUrl('schedule', {skipLocationChange: true}).then(()=>
+          this.router.navigate(["leagueoflegends"]));
+        // Refresh registered-players component
+        this.router.navigateByUrl('ranking', {skipLocationChange: true}).then(()=>
+          this.router.navigate(["leagueoflegends"]));
+      }
+      else
+        alert('Nie udało się zmienić liczby punktów!');
+    });
+  }
+
+  removePointFromP1(matchId: number, userId: number)
+  {
+    this.httpService.removeLeaguePoint(matchId, userId, 1).subscribe(success => {
+      if(success)
+      {
+        // Refresh match-schedule component
+        this.router.navigateByUrl('schedule', {skipLocationChange: true}).then(()=>
+          this.router.navigate(["leagueoflegends"]));
+        // Refresh registered-players component
+        this.router.navigateByUrl('ranking', {skipLocationChange: true}).then(()=>
+          this.router.navigate(["leagueoflegends"]));
+      }
+      else
+        alert('Nie udało się zmienić liczby punktów!');
+    });
+
+  }
+
+  addPointToP2(matchId: number, userId: number)
+  {
+    this.httpService.addLeaguePoint(matchId, userId, 2).subscribe(success => {
+      if(success)
+      {
+        // Refresh match-schedule component
+        this.router.navigateByUrl('schedule', {skipLocationChange: true}).then(()=>
+          this.router.navigate(["leagueoflegends"]));
+        // Refresh registered-players component
+        this.router.navigateByUrl('ranking', {skipLocationChange: true}).then(()=>
+          this.router.navigate(["leagueoflegends"]));
+      }
+      else
+        alert('Nie udało się zmienić liczby punktów!');
+    });
+  }
+
+  removePointFromP2(matchId: number, userId: number)
+  {
+    this.httpService.removeLeaguePoint(matchId, userId, 2).subscribe(success => {
+        if(success)
+        {
+          // Refresh match-schedule component
+          this.router.navigateByUrl('schedule', {skipLocationChange: true}).then(()=>
+            this.router.navigate(["leagueoflegends"]));
+          // Refresh registered-players component
+          this.router.navigateByUrl('ranking', {skipLocationChange: true}).then(()=>
+            this.router.navigate(["leagueoflegends"]));
+        }
+        else
+          alert('Nie udało się zmienić liczby punktów!');
+      });
+  }
+
+  endMatch(matchId: number)
+  {
+    this.httpService.endMatch(matchId).subscribe(success => {
+      if(success)
+      {
+        // Refresh match-schedule component
+        this.router.navigateByUrl('schedule', {skipLocationChange: true}).then(()=>
+          this.router.navigate(["leagueoflegends"]));
+        // Refresh registered-players component
+        this.router.navigateByUrl('ranking', {skipLocationChange: true}).then(()=>
+          this.router.navigate(["leagueoflegends"]));
+      }
+      else
+        alert('Nie udało się zakończyć meczu!');
     });
   }
 }

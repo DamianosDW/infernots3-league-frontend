@@ -1,5 +1,5 @@
 <div>
-  <button class="submit_button" style="margin: 15px;" (click)="appComponent.showStartPage()">Strona główna</button>
+  <button class="submit_button" style="margin-top: 100px;" (click)="appComponent.showStartPage()" [hidden]="this.userService.getUserInfo() !== null">Strona główna</button>
   <h2>Harmonogram rozgrywek ligowych</h2>
   <div *ngIf="matches.length === 0">
     <p>Brak rozgrywek w tym tygodniu.</p>
@@ -27,21 +27,25 @@
         <td>
           P1:<br />
           {{match.firstPlayerScore}}<br />
-          <hr *ngIf="this.userService.getUserInfo().username == 'admin'" />
-          <button *ngIf="this.userService.getUserInfo().username === 'admin'" class="admin_button">+</button>
-          <button *ngIf="this.userService.getUserInfo().username === 'admin'" class="admin_button">-</button>
+          <div *ngIf="this.userService.getUserInfo() !== null && this.userService.getUserInfo().username == 'admin' && !match.matchEnded">
+            <hr />
+            <button class="admin_button" (click)="addPointToP1(match.id, match.firstPlayer.userId)">+</button>
+            <button class="admin_button" (click)="removePointFromP1(match.id, match.firstPlayer.userId)">-</button>
+          </div>
         </td>
         <td>
           P2:<br />
           {{match.secondPlayerScore}}<br />
-          <hr *ngIf="this.userService.getUserInfo().username === 'admin'" />
-          <button *ngIf="this.userService.getUserInfo().username === 'admin'" class="admin_button">+</button>
-          <button *ngIf="this.userService.getUserInfo().username === 'admin'" class="admin_button">-</button>
+          <div *ngIf="this.userService.getUserInfo() !== null && this.userService.getUserInfo().username === 'admin' && !match.matchEnded">
+            <hr />
+            <button class="admin_button" (click)="addPointToP2(match.id, match.secondPlayer.userId)">+</button>
+            <button class="admin_button" (click)="removePointFromP2(match.id, match.secondPlayer.userId)">-</button>
+          </div>
         </td>
         <td *ngIf="match.matchEnded"><span style="color: green">Mecz zakończony</span></td>
         <td *ngIf="!match.matchEnded && currentDateTime >= matchStartDates[i]"><span style="color: orange">Mecz w toku</span></td>
-        <td *ngIf="this.userService.getUserInfo().username == 'admin'">
-          <button>Zakończ mecz</button>
+        <td *ngIf="this.userService.getUserInfo() !== null && this.userService.getUserInfo().username == 'admin'">
+          <button class="admin_button" style="width: 200px;" (click)="endMatch(match.id)" [disabled]="match.matchEnded">Zakończ mecz</button>
         </td>
       </tr>
     </table>
