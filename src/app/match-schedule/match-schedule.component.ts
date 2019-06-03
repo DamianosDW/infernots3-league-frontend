@@ -26,9 +26,4 @@ export class MatchScheduleComponent
       });
     });
   }
-
-  showPlayerStats()
-  {
-
-  }
 }

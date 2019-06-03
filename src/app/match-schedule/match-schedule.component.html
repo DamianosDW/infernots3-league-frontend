@@ -40,10 +40,8 @@
         </td>
         <td *ngIf="match.matchEnded"><span style="color: green">Mecz zakończony</span></td>
         <td *ngIf="!match.matchEnded && currentDateTime >= matchStartDates[i]"><span style="color: orange">Mecz w toku</span></td>
-        <td>
-          <button (click)="showPlayerStats()">Statystyki graczy</button><br />
-          <hr *ngIf="this.userService.getUserInfo().username == 'admin'" />
-          <button *ngIf="this.userService.getUserInfo().username == 'admin'">Zakończ mecz</button>
+        <td *ngIf="this.userService.getUserInfo().username == 'admin'">
+          <button>Zakończ mecz</button>
         </td>
       </tr>
     </table>
