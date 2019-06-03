@@ -25,10 +25,9 @@ export class LoginFormComponent
         // Get user info
         this.httpService.getUserInfo(this.login).subscribe(userInfo => {
           this.userService.saveUserInfo(userInfo);
+          // Show main page
+          this.router.navigateByUrl('games');
         });
-
-        // Show main page
-        this.router.navigateByUrl('games');
       }
       else
       {
