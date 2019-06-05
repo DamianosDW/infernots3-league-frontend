@@ -29,11 +29,12 @@ export class RegistrationFormComponent
             username: this.login,
             ts3Nickname: this.ts3Nickname
           });
+          // Move to games page
+          alert('Konto zostało utworzone!\nUzupełnij nick (zakładka "Profil"), którym posługujesz się w wybranej grze i dołącz do rozgrywek ;)\nPowodzenia!');
+          this.router.navigateByUrl('games');
         });
         // this.userService.getUserInfo().setUsername(this.login);
         // this.userService.getUserInfo().setTs3Nickname(this.ts3Nickname);
-        alert('Konto zostało utworzone!\nUzupełnij nick (zakładka "Profil"), którym posługujesz się w wybranej grze i dołącz do rozgrywek ;)\nPowodzenia!');
-        this.router.navigateByUrl('games');
       }
       else
       {
