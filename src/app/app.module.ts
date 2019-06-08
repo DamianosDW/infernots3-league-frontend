@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { LolComponent } from './lol/lol.component';
-import { CsgoComponent } from './csgo/csgo.component';
 import { FooterComponent } from './footer/footer.component';
 import { MatchScheduleComponent } from './match-schedule/match-schedule.component';
 import { RegisteredPlayersComponent } from './registered-players/registered-players.component';
