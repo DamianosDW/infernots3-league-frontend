@@ -47,6 +47,8 @@ label
 #content
 {
   width: 74%;
+  max-height: 550px;
+  overflow: auto;
   float: left;
   text-align: center;
   margin-top: 25px;
@@ -59,6 +61,8 @@ label
 #right_side
 {
   width: 24%;
+  max-height: 550px;
+  overflow: auto;
   float: right;
   text-align: center;
   margin-top: 25px;
