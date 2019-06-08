@@ -85,7 +85,11 @@ export class HttpService {
 
   endMatch(matchId: number)
   {
-    return this.httpClient.put('http://localhost:8080/api/matches/' + matchId, {});
+    return this.httpClient.put('http://localhost:8080/api/matches/endMatch', {}, {
+      params: {
+        matchId: matchId + ''
+      }
+    });
   }
 
   addLeaguePoint(matchId: number, userId: number, playerNumber: number)
@@ -108,5 +112,10 @@ export class HttpService {
         playerNumber: playerNumber + ''
       }
     });
+  }
+
+  getCurrentMatchesStartDates()
+  {
+    return this.httpClient.get<Array<Date>>('http://localhost:8080/api/matches/dates');
   }
 }
