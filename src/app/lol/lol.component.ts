@@ -5,6 +5,7 @@ import {HttpService} from "../http.service";
 import {UserService} from "../user.service";
 import {UserInfo} from "../user-info";
 import {Match} from "../match";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-lol',
@@ -29,22 +30,30 @@ export class LolComponent
             let opponent: UserInfo = null;
             this.httpService.getOpponent(this.userService.getUserInfo().userId).subscribe(userInfo => {
               opponent = userInfo;
+
+              // Create match
+              if(opponent !== null)
+              {
+                let match: Match = this.prepareMatchAndOpponent(opponent);
+
+                // Prepare data in proper format
+                let matchStartDateInProperFormat: string = this.appComponent.convertDateNumberToProperFormat(match.matchStartDate.getDate()) + '.' + this.appComponent.convertDateNumberToProperFormat(match.matchStartDate.getMonth()) + '.' + this.appComponent.convertDateNumberToProperFormat(match.matchStartDate.getFullYear());
+                let matchStartTimeInProperFormat: string = this.appComponent.convertDateNumberToProperFormat(match.matchStartDate.getHours()) + ':' + this.appComponent.convertDateNumberToProperFormat(match.matchStartDate.getMinutes());
+
+                alert('Dołączyłeś/aś do rozgrywek!\nTwój następny mecz odbędzie się ' + matchStartDateInProperFormat + ' o godzinie ' + matchStartTimeInProperFormat + '.\nNick gracza (TS3), z którym się zmierzysz to: ' + opponent.ts3Nickname + '.');
+              }
+              else
+              {
+                alert('Dołączyłeś/aś do rozgrywek, ale nie dostałeś/aś przeciwnika!\nSkorzystaj z przycisku \'Znajdź przeciwnika\', aby serwis wylosował odpowiedniego gracza do walki.');
+              }
+
+              // Refresh match-schedule component
+              this.router.navigateByUrl('schedule', {skipLocationChange: true}).then(()=>
+                this.router.navigate(["leagueoflegends"]));
+              // Refresh registered-players component
+              this.router.navigateByUrl('ranking', {skipLocationChange: true}).then(()=>
+                this.router.navigate(["leagueoflegends"]));
             });
-
-            if(opponent !== null)
-            {
-              let match: Match = this.prepareMatchAndOpponent(opponent);
-
-              // Prepare data in proper format
-              let matchStartDateInProperFormat: string = this.appComponent.convertDateNumberToProperFormat(match.matchStartDate.getDate()) + '.' + this.appComponent.convertDateNumberToProperFormat(match.matchStartDate.getMonth()) + '.' + this.appComponent.convertDateNumberToProperFormat(match.matchStartDate.getFullYear());
-              let matchStartTimeInProperFormat: string = this.appComponent.convertDateNumberToProperFormat(match.matchStartDate.getHours()) + ':' + this.appComponent.convertDateNumberToProperFormat(match.matchStartDate.getMinutes());
-
-              alert('Dołączyłeś/aś do rozgrywek!\nTwój następny mecz odbędzie się ' + matchStartDateInProperFormat + ' o godzinie ' + matchStartTimeInProperFormat + '.\nNick gracza (TS3), z którym się zmierzysz to: ' + opponent.ts3Nickname + '.');
-            }
-            else
-            {
-              alert('Dołączyłeś/aś do rozgrywek, ale nie dostałeś/aś przeciwnika!\nSkorzystaj z przycisku \'Znajdź przeciwnika\', aby serwis wylosował odpowiedniego gracza do walki.');
-            }
           }
           else
           {
@@ -54,12 +63,6 @@ export class LolComponent
               alert('Nie udało się dołączyć do rozgrywek! Spróbuj ponownie później.');
           }
         });
-        // Refresh match-schedule component
-        this.router.navigateByUrl('schedule', {skipLocationChange: true}).then(()=>
-          this.router.navigate(["leagueoflegends"]));
-        // Refresh registered-players component
-        this.router.navigateByUrl('ranking', {skipLocationChange: true}).then(()=>
-          this.router.navigate(["leagueoflegends"]));
       }
       else
         alert('Dołączyłeś/aś już do rozgrywek!');
@@ -90,15 +93,18 @@ export class LolComponent
               {
                 alert('Nie wylosowano przeciwnika, ponieważ pozostali gracze zostali już przydzieleni do rozgrywek!\nSpróbuj ponownie później.');
               }
-              // Refresh match-schedule component
-              this.router.navigateByUrl('schedule', {skipLocationChange: true}).then(()=>
-                this.router.navigate(["leagueoflegends"]));
-              // Refresh registered-players component
-              this.router.navigateByUrl('ranking', {skipLocationChange: true}).then(()=>
-                this.router.navigate(["leagueoflegends"]));
             });
+            // Refresh match-schedule component
+            this.router.navigateByUrl('schedule', {skipLocationChange: true}).then(()=>
+              this.router.navigate(["leagueoflegends"]));
+            // Refresh registered-players component
+            this.router.navigateByUrl('ranking', {skipLocationChange: true}).then(()=>
+              this.router.navigate(["leagueoflegends"]));
           }
-          alert('Masz już przeciwnika!');
+          else
+          {
+            alert('Masz już przeciwnika!');
+          }
         });
       }
       else
@@ -110,6 +116,8 @@ export class LolComponent
 
   prepareMatchAndOpponent(opponent: UserInfo): Match
   {
+    let currentDateTime = new Date();
+
     // Prepare match start dates
     let firstMatchStartDate = new Date();
     firstMatchStartDate.setHours(18, 0, 0);
@@ -124,8 +132,27 @@ export class LolComponent
 
     let matchStartDates: Array<Date> = [firstMatchStartDate, secondMatchStartDate, thirdMatchStartDate, fourthMatchStartDate, fifthMatchStartDate];
 
+    // Get current matches start dates
+    let currentMatchesStartDates: Array<Date> = [];
+    this.httpService.getCurrentMatchesStartDates()
+      .toPromise()
+      .then(matchStartDate => {
+        matchStartDate.forEach(value => {
+          currentMatchesStartDates.push(value);
+        });
+      });
+
     // Get random match start date
-    let matchStartDate = matchStartDates[Math.floor(Math.random() * matchStartDates.length)];
+    let matchStartDate;
+
+    do {
+      matchStartDate = matchStartDates[Math.floor(Math.random() * matchStartDates.length)];
+
+      if(matchStartDate < currentDateTime)
+      {
+        matchStartDate.setDate(matchStartDate.getDate() + 1);
+      }
+    } while(currentMatchesStartDates.includes(matchStartDate));
 
     // Get logged in user info
     let loggedInUserInfo = this.userService.getUserInfo();
