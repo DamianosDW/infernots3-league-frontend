@@ -41,18 +41,20 @@ export class LolComponent
                 let matchStartTimeInProperFormat: string = this.appComponent.convertDateNumberToProperFormat(match.matchStartDate.getHours()) + ':' + this.appComponent.convertDateNumberToProperFormat(match.matchStartDate.getMinutes());
 
                 alert('Dołączyłeś/aś do rozgrywek!\nTwój następny mecz odbędzie się ' + matchStartDateInProperFormat + ' o godzinie ' + matchStartTimeInProperFormat + '.\nNick gracza (TS3), z którym się zmierzysz to: ' + opponent.ts3Nickname + '.');
+                // Refresh match-schedule component
+                this.router.navigateByUrl('schedule', {skipLocationChange: true}).then(()=>
+                  this.router.navigate(["leagueoflegends"]));
+                // Refresh registered-players component
+                this.router.navigateByUrl('ranking', {skipLocationChange: true}).then(()=>
+                  this.router.navigate(["leagueoflegends"]));
               }
               else
               {
                 alert('Dołączyłeś/aś do rozgrywek, ale nie dostałeś/aś przeciwnika!\nSkorzystaj z przycisku \'Znajdź przeciwnika\', aby serwis wylosował odpowiedniego gracza do walki.');
+                // Refresh registered-players component
+                this.router.navigateByUrl('ranking', {skipLocationChange: true}).then(()=>
+                  this.router.navigate(["leagueoflegends"]));
               }
-
-              // Refresh match-schedule component
-              this.router.navigateByUrl('schedule', {skipLocationChange: true}).then(()=>
-                this.router.navigate(["leagueoflegends"]));
-              // Refresh registered-players component
-              this.router.navigateByUrl('ranking', {skipLocationChange: true}).then(()=>
-                this.router.navigate(["leagueoflegends"]));
             }, error => {
               this.httpService.showErrorAlert();
             });
@@ -94,6 +96,9 @@ export class LolComponent
                 let matchStartTimeInProperFormat: string = this.appComponent.convertDateNumberToProperFormat(match.matchStartDate.getHours()) + ':' + this.appComponent.convertDateNumberToProperFormat(match.matchStartDate.getMinutes());
 
                 alert('Wylosowano przeciwnika!\nNick gracza (TS3), z którym się zmierzysz to: ' + opponent.ts3Nickname + '.\nMecz odbędzie się ' + matchStartDateInProperFormat + ' o godzinie ' + matchStartTimeInProperFormat + '.');
+                // Refresh match-schedule component
+                this.router.navigateByUrl('schedule', {skipLocationChange: true}).then(()=>
+                  this.router.navigate(["leagueoflegends"]));
               }
               else
               {
@@ -102,9 +107,6 @@ export class LolComponent
             }, error => {
               this.httpService.showErrorAlert();
             });
-            // Refresh match-schedule component
-            this.router.navigateByUrl('schedule', {skipLocationChange: true}).then(()=>
-              this.router.navigate(["leagueoflegends"]));
             // Refresh registered-players component
             this.router.navigateByUrl('ranking', {skipLocationChange: true}).then(()=>
               this.router.navigate(["leagueoflegends"]));
