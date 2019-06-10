@@ -4,7 +4,7 @@
   <div *ngIf="matches.length === 0">
     <p>Brak rozgrywek w tym tygodniu.</p>
   </div>
-  <div *ngIf="matches.length > 0">
+  <div *ngIf="matches.length > 0" style="max-height: 600px; overflow: auto;">
     <table style="border: 2px solid white; border-spacing: 0;">
       <tr *ngFor="let match of matches; let i = index">
         <td>
