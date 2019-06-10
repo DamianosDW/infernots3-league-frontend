@@ -32,6 +32,8 @@ export class RegisteredPlayersComponent implements OnInit
         ts3Nickname = user.ts3Nickname;
         this.userStats[i].user = ts3Nickname;
       }
+    }, error => {
+      this.httpService.showErrorAlert();
     });
     return this.userStats;
 

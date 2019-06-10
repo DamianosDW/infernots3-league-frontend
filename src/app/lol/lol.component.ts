@@ -53,6 +53,8 @@ export class LolComponent
               // Refresh registered-players component
               this.router.navigateByUrl('ranking', {skipLocationChange: true}).then(()=>
                 this.router.navigate(["leagueoflegends"]));
+            }, error => {
+              this.httpService.showErrorAlert();
             });
           }
           else
@@ -62,10 +64,14 @@ export class LolComponent
             else
               alert('Nie udało się dołączyć do rozgrywek! Spróbuj ponownie później.');
           }
+        }, error => {
+          this.httpService.showErrorAlert();
         });
       }
       else
         alert('Dołączyłeś/aś już do rozgrywek!');
+    }, error => {
+      this.httpService.showErrorAlert();
     });
   }
 
@@ -93,6 +99,8 @@ export class LolComponent
               {
                 alert('Nie wylosowano przeciwnika, ponieważ pozostali gracze zostali już przydzieleni do rozgrywek!\nSpróbuj ponownie później.');
               }
+            }, error => {
+              this.httpService.showErrorAlert();
             });
             // Refresh match-schedule component
             this.router.navigateByUrl('schedule', {skipLocationChange: true}).then(()=>
@@ -105,12 +113,16 @@ export class LolComponent
           {
             alert('Masz już przeciwnika!');
           }
+        }, error => {
+          this.httpService.showErrorAlert();
         });
       }
       else
       {
         alert('Nie możesz wylosować przeciwnika, ponieważ nie dołączyłeś/aś do rozgrywek!');
       }
+    }, error => {
+      this.httpService.showErrorAlert();
     });
   }
 
@@ -140,6 +152,8 @@ export class LolComponent
         matchStartDate.forEach(value => {
           currentMatchesStartDates.push(value);
         });
+      }, error => {
+        this.httpService.showErrorAlert();
       });
 
     // Get random match start date

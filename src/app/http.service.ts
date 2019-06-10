@@ -118,4 +118,9 @@ export class HttpService {
   {
     return this.httpClient.get<Array<Date>>('http://localhost:8080/api/matches/dates');
   }
+
+  showErrorAlert()
+  {
+    alert('API nie działa! Spróbuj ponownie później!');
+  }
 }

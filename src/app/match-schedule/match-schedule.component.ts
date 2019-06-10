@@ -25,6 +25,8 @@ export class MatchScheduleComponent
       this.matches.forEach((match, index) => {
         this.matchStartDates[index] = new Date(match.matchStartDate[0] + '.' + match.matchStartDate[1] + '.' + match.matchStartDate[2] + ' ' + match.matchStartDate[3] + ':' + match.matchStartDate[4] + '0');
       });
+    }, error => {
+      this.httpService.showErrorAlert();
     });
   }
 
@@ -42,6 +44,8 @@ export class MatchScheduleComponent
       }
       else
         alert('Nie udało się zmienić liczby punktów!');
+    }, error => {
+      this.httpService.showErrorAlert();
     });
   }
 
@@ -59,6 +63,8 @@ export class MatchScheduleComponent
       }
       else
         alert('Nie udało się zmienić liczby punktów!');
+    }, error => {
+      this.httpService.showErrorAlert();
     });
 
   }
@@ -77,6 +83,8 @@ export class MatchScheduleComponent
       }
       else
         alert('Nie udało się zmienić liczby punktów!');
+    }, error => {
+      this.httpService.showErrorAlert();
     });
   }
 
@@ -94,7 +102,9 @@ export class MatchScheduleComponent
         }
         else
           alert('Nie udało się zmienić liczby punktów!');
-      });
+      }, error => {
+      this.httpService.showErrorAlert();
+    });
   }
 
   endMatch(matchId: number)
@@ -111,6 +121,8 @@ export class MatchScheduleComponent
       }
       else
         alert('Nie udało się zakończyć meczu!');
+    }, error => {
+      this.httpService.showErrorAlert();
     });
   }
 }

@@ -34,6 +34,8 @@ export class LoginFormComponent
         this.password = '';
         alert('Niepoprawny login/hasło!');
       }
+    }, error => {
+      this.httpService.showErrorAlert();
     });
   }
 

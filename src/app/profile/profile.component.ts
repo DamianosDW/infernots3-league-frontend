@@ -55,6 +55,8 @@ export class ProfileComponent
           else
             alert('Ten nick jest używany przez innego gracza!');
         }
+      }, error => {
+        this.httpService.showErrorAlert();
       });
     }
     else

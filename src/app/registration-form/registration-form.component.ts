@@ -19,8 +19,7 @@ export class RegistrationFormComponent
 
   createUserAccount()
   {
-    this.httpService.createAccount(this.ts3Nickname, this.login, this.password).subscribe(accountCreated =>
-    {
+    this.httpService.createAccount(this.ts3Nickname, this.login, this.password).subscribe(accountCreated => {
       if(accountCreated)
       {
         this.httpService.getUserId(this.login).subscribe(userId => {
@@ -40,6 +39,8 @@ export class RegistrationFormComponent
       {
         alert('Nie udało się utworzyć konta!\nPrawdopodobnie jest już taki login/nick na ts3 w bazie danych!')
       }
+    }, error => {
+      this.httpService.showErrorAlert();
     });
   }
 

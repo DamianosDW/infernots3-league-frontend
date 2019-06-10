@@ -28,6 +28,8 @@ export class GamesComponent implements OnInit
 
       this.userService.setUserLeaguePoints(userStats.leaguePoints);
       this.router.navigateByUrl('leagueoflegends');
+    }, error => {
+      this.httpService.showErrorAlert();
     });
   }
 
